@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerScope - AI-Powered CS Career Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+    * {
+        font-family: 'Inter', sans-serif;
+    }
+
+    .gradient-bg {
+        background: linear-gradient(
+            135deg,
+            #253f57 0%,    /* was #1e2a3a */
+            #3a2f66 25%,   /* was #2a1f4d */
+            #3b6a7c 50%,   /* was #274b52 */
+            #2e5f72 75%,   /* was #1a3a47 */
+            #1d4b5a 100%   /* was #122d3a */
+        );
+        background-size: 400% 400%;
+        animation: gradientShift 8s ease infinite;
+    }
+
+    .hero-gradient {
+        background: linear-gradient(
+            135deg,
+            #16233f 0%,    /* was #0f172a */
+            #2a3c51 25%,   /* was #1e293b */
+            #32526a 50%,   /* was #263544 */
+            #2b465e 75%,   /* was #1f2f3c */
+            #1c2b3e 100%   /* was #111b24 */
+        );
+        background-size: 400% 400%;
+        animation: gradientShift 12s ease infinite;
+    }
+
+
+    @keyframes gradientShift {
+        0%   { background-position: 0% 50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .glass-effect {
+        background: rgba(20, 20, 25, 0.2);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(40, 40, 50, 0.3);
+    }
+
+    .neon-glow {
+        box-shadow:
+            0 0 20px rgba(30, 60, 80, 0.6),
+            0 0 40px rgba(30, 60, 80, 0.4),
+            0 0 60px rgba(30, 60, 80, 0.2);
+    }
+
+    .floating {
+        animation: floating 6s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+        0%, 100% { transform: translateY(0px); }
+        50%      { transform: translateY(-20px); }
+    }
+
+    .pulse-ring {
+        animation: pulse-ring 2s infinite;
+    }
+
+    @keyframes pulse-ring {
+        0%   { transform: scale(0.8); opacity: 1; }
+        100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    .text-gradient {
+        background: linear-gradient(
+            135deg,
+            #747497,
+            #6d6386,
+            #4d7070,
+            #8fb5ba
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        background-size: 400% 400%;
+        animation: gradientShift 8s ease infinite;
+    }
+
+    .card-hover {
+        transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .skill-bar {
+        background: linear-gradient(
+            90deg,
+            #274b52,
+            #1a3a47,
+            #122d3a
+        );
+        position: relative;
+        overflow: hidden;
+    }
+
+    .skill-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.2),
+            transparent
+        );
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        0%   { left: -100%; }
+        100% { left: 100%; }
+    }
+
+    .particle {
+        position: absolute;
+        background: radial-gradient(circle, #274b52, transparent);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: particle-float 15s infinite linear;
+    }
+
+    @keyframes particle-float {
+        0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+        10%  { opacity: 1; }
+        90%  { opacity: 1; }
+        100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .form-input {
+        background: rgba(30, 30, 35, 0.8);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+        background: rgba(30, 30, 35, 0.9);
+        transform: scale(1.02);
+        box-shadow: 0 10px 30px rgba(30, 60, 80, 0.3);
+    }
+
+    .btn-primary {
+        background: linear-gradient(
+            135deg,
+            #2a1f4d,
+            #1e253a
+        );
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.2),
+            transparent
+        );
+        transition: all 0.6s;
+    }
+
+    .btn-primary:hover::before {
+        left: 100%;
+    }
+
+    .feature-icon {
+        background: linear-gradient(
+            135deg,
+            #274b52,
+            #1a3a47
+        );
+        position: relative;
+    }
+
+    .feature-icon::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(
+            from 0deg,
+            transparent,
+            rgba(30, 60, 80, 0.3),
+            transparent
+        );
+        animation: rotate 3s linear infinite;
+    }
+
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+    }
+
+    .stats-number {
+        background: linear-gradient(
+            135deg,
+            #6d6386,
+            #4d7070
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+</style>
+
+</head>
+<body class="overflow-x-hidden margin mt-5">
+    <!-- Animated Background Particles -->
+    <div id="particles" class="fixed inset-0 pointer-events-none z-0"></div>
+    
+    <!-- Navigation -->
+    <nav class="glass-effect fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <div class="text-3xl font-black text-gradient">🚀 CareerScope</div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="showPage('home')" class="nav-link relative text-white font-medium hover:text-cyan-300 transition-all duration-300 group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                    <button onclick="showPage('predict')" class="nav-link relative text-white font-medium hover:text-cyan-300 transition-all duration-300 group">
+                        Predict Career
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                    <button onclick="showPage('predict')" class="btn-primary text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-all duration-300 neon-glow">
+                        Get Started 🎯
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-white hover:text-cyan-300 transition-colors">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page 1: Home -->
+    <div id="homePage" class="page-content {% if prediction %}hidden{% else %}block{% endif %}">
+        <!-- Hero Section -->
+        <section class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+            <!-- Floating Elements -->
+            <div class="absolute top-20 left-10 floating">
+                <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                    <span class="text-2xl">💻</span>
+                </div>
+            </div>
+            <div class="absolute top-40 right-20 floating" style="animation-delay: -2s;">
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                    <span class="text-xl">🎓</span>
+                </div>
+            </div>
+            <div class="absolute bottom-40 left-1/4 floating" style="animation-delay: -4s;">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                    <span class="text-lg">⚡</span>
+                </div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- Text Content -->
+                    <div class="text-white">
+                        <div class="mb-6">
+                            <span class="inline-block bg-white bg-opacity-20 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4 backdrop-blur-sm">
+                                🤖 AI-Powered Career Intelligence
+                            </span>
+                        </div>
+                        <h1 class="text-5xl lg:text-7xl font-black leading-tight mb-8">
+                            Discover Your
+                            <span class="block text-gradient text-6xl lg:text-8xl">Dream Career</span>
+                            <span class="block text-4xl lg:text-6xl font-light">in Tech</span>
+                        </h1>
+                        <p class="text-xl lg:text-2xl text-gray-100 mb-12 leading-relaxed">
+                            Transform your passion into a lucrative career with our cutting-edge AI that analyzes 
+                            <span class="text-cyan-300 font-semibold">1500+ combination input</span> to find your perfect match.
+                        </p>
+                        
+                        <!-- Stats -->
+                        <div class="grid grid-cols-3 gap-8 mb-12">
+                            <div class="text-center">
+                                <div class="stats-number text-3xl font-black">98%</div>
+                                <div class="text-gray-300 text-sm">Accuracy Rate</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-number text-3xl font-black">9000+</div>
+                                <div class="text-gray-300 text-sm">Data Collected</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-number text-3xl font-black">15+</div>
+                                <div class="text-gray-300 text-sm">Careers</div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="showPage('predict')" class="btn-primary text-white px-10 py-4 rounded-full text-lg font-bold hover:scale-105 transition-all duration-300 neon-glow">
+                                🚀 Start Prediction
+                            </button>
+                            <button class="glass-effect text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+                                📊 View Demo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Interactive Image Grid -->
+                    <div class="relative">
+                        <div class="grid grid-cols-2 gap-6">
+                            <!-- Main Image -->
+                            <div class="col-span-2 relative group overflow-hidden rounded-3xl neon-glow">
+                                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                                     alt="Team Collaboration" 
+                                     class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 text-white">
+                                    <div class="text-lg font-bold">Tech Innovation</div>
+                                    <div class="text-sm opacity-80">Building the Future</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Side Images -->
+                            <div class="relative group overflow-hidden rounded-2xl">
+                                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                     alt="Coding" 
+                                     class="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-purple-600/70 to-transparent"></div>
+                                <div class="absolute bottom-2 left-2 text-white text-sm font-semibold">Development</div>
+                            </div>
+                            
+                            <div class="relative group overflow-hidden rounded-2xl">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                     alt="Data Analytics" 
+                                     class="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-cyan-600/70 to-transparent"></div>
+                                <div class="absolute bottom-2 left-2 text-white text-sm font-semibold">Analytics</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Stats Card -->
+                        <div class="absolute -bottom-8 -left-8 glass-effect p-6 rounded-2xl text-white">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                                    <span class="text-xl">✨</span>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-green-400">98%</div>
+                                    <div class="text-sm opacity-80">Success Rate</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute top-0 left-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl"></div>
+                <div class="absolute top-0 right-0 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl"></div>
+                <div class="absolute bottom-0 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-20">
+                    <h2 class="text-5xl lg:text-6xl font-black text-gray-900 mb-6">
+                        Why Choose 
+                        <span class="text-gradient">CareerScope?</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Experience the most advanced career prediction platform powered by machine learning and real industry data
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="card-hover glass-effect p-8 rounded-3xl text-center relative overflow-hidden">
+                        <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 relative z-10">
+                            <span class="text-3xl relative z-20">🧠</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">AI-Powered Analysis</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Our advanced neural networks analyze your skills, preferences, and market trends to predict the perfect career match with 94% accuracy.
+                        </p>
+                        <div class="mt-6 flex justify-center">
+                            <span class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold">Smart Technology</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="card-hover glass-effect p-8 rounded-3xl text-center relative overflow-hidden">
+                        <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 relative z-10">
+                            <span class="text-3xl relative z-20">⚡</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Instant Results</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Get comprehensive career insights instantly. No waiting, no delays - just immediate, actionable career guidance.
+                        </p>
+                        <div class="mt-6 flex justify-center">
+                            <span class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-semibold">Lightning Fast</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="card-hover glass-effect p-8 rounded-3xl text-center relative overflow-hidden">
+                        <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 relative z-10">
+                            <span class="text-3xl relative z-20">📊</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Data-Driven Insights</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Built on analysis of 1500+ different combinations of students interested domain and projects.
+                        </p>
+                        <div class="mt-6 flex justify-center">
+                            <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">Proven Results</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Call to Action -->
+                <div class="text-center mt-16">
+                    <button onclick="showPage('predict')" class="btn-primary text-white px-12 py-4 rounded-full text-xl font-bold hover:scale-105 transition-all duration-300 neon-glow">
+                        🎯 Discover Your Path Now
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page 2: Prediction Form -->
+    <div id="predictPage" class="page-content {% if prediction %}block{% else %}hidden{% endif %}">
+        <section class="gradient-bg min-h-screen py-20 relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute top-20 left-10 w-32 h-32 bg-white bg-opacity-10 rounded-full blur-xl"></div>
+            <div class="absolute bottom-20 right-10 w-40 h-40 bg-white bg-opacity-10 rounded-full blur-xl"></div>
+            
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16">
+                    <h1 class="text-5xl lg:text-6xl font-black text-white mb-6">
+                        🔮 Career <span class="text-gradient">Prediction</span>
+                    </h1>
+                    <p class="text-xl text-gray-100 max-w-2xl mx-auto">
+                        Fill out this comprehensive form and let our AI analyze your profile to predict your ideal tech career path
+                    </p>
+                </div>
+
+                <form id="predictionForm" method="POST" action='/predict' class="glass-effect rounded-3xl p-8 lg:p-12 neon-glow">
+                    <!-- Skills Assessment Section -->
+                    <div class="mb-12 mt-12">
+                        <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                            <span class="text-2xl">🚀</span> Skills Assessment
+                            <span class="text-sm font-normal text-gray-300 ml-auto">Rate your proficiency level</span>
+                        </h2>
+                        
+                        <!-- Distributed Systems -->
+                        <div class="mb-8 p-6 glass-effect rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                            <span class="text-2xl">🖧</span>
+                            <label class="text-lg font-semibold text-white">Distributed Systems</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                            <span id="distributedSystemsValue" class="text-lg font-bold text-white bg-white bg-opacity-20 px-4 py-2 rounded-full">3</span>
+                            <span class="text-sm text-gray-300">/ 6</span>
+                            </div>
+                        </div>
+                        <input
+                            type="range"
+                            name="distributed_computing_systems"
+                            min="1" max="6" value="3"
+                            class="w-full h-3 skill-bar rounded-lg appearance-none cursor-pointer"
+                            id="distributedSystemsValue"
+                            oninput="updateSkillValue('distributedSystems', this.value)"
+                        >
+                        <div class="flex justify-between text-xs text-gray-300 mt-2">
+                            <span>🔰 Beginner</span>
+                            <span>⭐ Intermediate</span>
+                            <span>🏆 Expert</span>
+                        </div>
+                        </div>
+
+                        <!-- Software Development -->
+                        <div class="mb-8 p-6 glass-effect rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                            <span class="text-2xl">💻</span>
+                            <label class="text-lg font-semibold text-white">Software Development</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                            <span id="softwareDevelopmentValue" class="text-lg font-bold text-white bg-white bg-opacity-20 px-4 py-2 rounded-full">3</span>
+                            <span class="text-sm text-gray-300">/ 6</span>
+                            </div>
+                        </div>
+                        <input
+                            type="range"
+                            name="software_development"
+                            min="1" max="6" value="3"
+                            class="w-full h-3 skill-bar rounded-lg appearance-none cursor-pointer"
+                            id="softwareDevelopmentValue"
+                            oninput="updateSkillValue('softwareDevelopment', this.value)"
+                        >
+                        <div class="flex justify-between text-xs text-gray-300 mt-2">
+                            <span>🔰 Beginner</span>
+                            <span>⭐ Intermediate</span>
+                            <span>🏆 Expert</span>
+                        </div>
+                        </div>
+
+                        <!-- Programming Skills -->
+                        <div class="mb-8 p-6 glass-effect rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                            <span class="text-2xl">🧑‍💻</span>
+                            <label class="text-lg font-semibold text-white">Programming Skills</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                            <span id="programmingSkillsValue" class="text-lg font-bold text-white bg-white bg-opacity-20 px-4 py-2 rounded-full">3</span>
+                            <span class="text-sm text-gray-300">/ 6</span>
+                            </div>
+                        </div>
+                        <input
+                            type="range"
+                            name="programming_skills"
+                            min="1" max="6" value="3"
+                            class="w-full h-3 skill-bar rounded-lg appearance-none cursor-pointer"
+                            id="programmingSkillsValue"
+                            oninput="updateSkillValue('programmingSkills', this.value)"
+                        >
+                        <div class="flex justify-between text-xs text-gray-300 mt-2">
+                            <span>🔰 Beginner</span>
+                            <span>⭐ Intermediate</span>
+                            <span>🏆 Expert</span>
+                        </div>
+                        </div>
+
+                        <!-- Project Management -->
+                        <div class="mb-8 p-6 glass-effect rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                            <span class="text-2xl">🗂️</span>
+                            <label class="text-lg font-semibold text-white">Project Management</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                            <span id="projectManagementValue" class="text-lg font-bold text-white bg-white bg-opacity-20 px-4 py-2 rounded-full">3</span>
+                            <span class="text-sm text-gray-300">/ 6</span>
+                            </div>
+                        </div>
+                        <input
+                            type="range"
+                            name="project_management"
+                            min="1" max="6" value="3"
+                            class="w-full h-3 skill-bar rounded-lg appearance-none cursor-pointer"
+                            id="projectManagementValue"
+                            oninput="updateSkillValue('projectManagement', this.value)"
+                        >
+                        <div class="flex justify-between text-xs text-gray-300 mt-2">
+                            <span>🔰 Beginner</span>
+                            <span>⭐ Intermediate</span>
+                            <span>🏆 Expert</span>
+                        </div>
+                        </div>
+
+                        <!-- Technical Communication -->
+                        <div class="mb-8 p-6 glass-effect rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                            <span class="text-2xl">📝</span>
+                            <label class="text-lg font-semibold text-white">Technical Communication</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                            <span id="technicalCommunicationValue" class="text-lg font-bold text-white bg-white bg-opacity-20 px-4 py-2 rounded-full">3</span>
+                            <span class="text-sm text-gray-300">/ 6</span>
+                            </div>
+                        </div>
+                        <input
+                            type="range"
+                            name="technical_communication"
+                            min="1" max="6" value="3"
+                            class="w-full h-3 skill-bar rounded-lg appearance-none cursor-pointer"
+                            id="technicalCommunicationValue"
+                            oninput="updateSkillValue('technicalCommunication', this.value)"
+                        >
+                        <div class="flex justify-between text-xs text-gray-300 mt-2">
+                            <span>🔰 Beginner</span>
+                            <span>⭐ Intermediate</span>
+                            <span>🏆 Expert</span>
+                        </div>
+                        </div>
+
+                        <!-- AI & ML -->
+                        <div class="mb-8 p-6 glass-effect rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                            <span class="text-2xl">🤖</span>
+                            <label class="text-lg font-semibold text-white">AI &amp; ML</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                            <span id="aiMlValue" class="text-lg font-bold text-white bg-white bg-opacity-20 px-4 py-2 rounded-full">3</span>
+                            <span class="text-sm text-gray-300">/ 6</span>
+                            </div>
+                        </div>
+                        <input
+                            type="range"
+                            name="ai_ml"
+                            min="1" max="6" value="3"
+                            class="w-full h-3 skill-bar rounded-lg appearance-none cursor-pointer"
+                            id="aiMlValue"
+                            oninput="updateSkillValue('aiMl', this.value)"
+                        >
+                        <div class="flex justify-between text-xs text-gray-300 mt-2">
+                            <span>🔰 Beginner</span>
+                            <span>⭐ Intermediate</span>
+                            <span>🏆 Expert</span>
+                        </div>
+                        </div>
+
+                        <!-- Software Engineering -->
+                        <div class="mb-8 p-6 glass-effect rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                            <span class="text-2xl">🏗️</span>
+                            <label class="text-lg font-semibold text-white">Software Engineering</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                            <span id="softwareEngineeringValue" class="text-lg font-bold text-white bg-white bg-opacity-20 px-4 py-2 rounded-full">3</span>
+                            <span class="text-sm text-gray-300">/ 6</span>
+                            </div>
+                        </div>
+                        <input
+                            type="range"
+                            name="software_engineering"
+                            min="1" max="6" value="3"
+                            class="w-full h-3 skill-bar rounded-lg appearance-none cursor-pointer"
+                            id="softwareEngineeringValue"
+                            oninput="updateSkillValue('softwareEngineering', this.value)"
+                        >
+                        <div class="flex justify-between text-xs text-gray-300 mt-2">
+                            <span>🔰 Beginner</span>
+                            <span>⭐ Intermediate</span>
+                            <span>🏆 Expert</span>
+                        </div>
+                        </div>
+
+                        <!-- Data Science -->
+                        <div class="mb-8 p-6 glass-effect rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                            <span class="text-2xl">📊</span>
+                            <label class="text-lg font-semibold text-white">Data Science</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                            <span id="dataScienceValue" class="text-lg font-bold text-white bg-white bg-opacity-20 px-4 py-2 rounded-full">3</span>
+                            <span class="text-sm text-gray-300">/ 6</span>
+                            </div>
+                        </div>
+                        <input
+                            type="range"
+                            name="data_science"
+                            min="1" max="6" value="3"
+                            class="w-full h-3 skill-bar rounded-lg appearance-none cursor-pointer"
+                            id="dataScienceValue"
+                            oninput="updateSkillValue('dataScience', this.value)"
+                        >
+                        <div class="flex justify-between text-xs text-gray-300 mt-2">
+                            <span>🔰 Beginner</span>
+                            <span>⭐ Intermediate</span>
+                            <span>🏆 Expert</span>
+                        </div>
+                        </div>
+
+                        <!-- Conversational Skills -->
+                        <div class="mb-8 p-6 glass-effect rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                            <span class="text-2xl">💬</span>
+                            <label class="text-lg font-semibold text-white">Conversational Skills</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                            <span id="conversationValue" class="text-lg font-bold text-white bg-white bg-opacity-20 px-4 py-2 rounded-full">0.50</span>
+                            <span class="text-sm text-gray-300">/ 1.00</span>
+                            </div>
+                        </div>
+                        <input
+                            type="range"
+                            name="conversation"
+                            min="0" max="1" step="0.01" value="0.50"
+                            class="w-full h-3 skill-bar rounded-lg appearance-none cursor-pointer"
+                            id="conversationValue"
+                            oninput="updateTraitValue('conversation', this.value)"
+                        >
+                        </div>
+
+                        <!-- Pleasure & Enjoyment (Hedonism) -->
+                        <div class="mb-8 p-6 glass-effect rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                            <span class="text-2xl">🎉</span>
+                            <label class="text-lg font-semibold text-white">Pleasure &amp; Enjoyment (Hedonism)</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                            <span id="hedonismValue" class="text-lg font-bold text-white bg-white bg-opacity-20 px-4 py-2 rounded-full">0.50</span>
+                            <span class="text-sm text-gray-300">/ 1.00</span>
+                            </div>
+                        </div>
+                        <input
+                            type="range"
+                            name="hedonism"
+                            min="0" max="1" step="0.01" value="0.50"
+                            class="w-full h-3 skill-bar rounded-lg appearance-none cursor-pointer"
+                            id="hedonismValue"
+                            oninput="updateTraitValue('hedonism', this.value)"
+                        >
+                        </div>
+
+                        <!-- Personal Growth & Altruism (Self-Transcendence) -->
+                        <div class="mb-8 p-6 glass-effect rounded-2xl">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                            <span class="text-2xl">🕊️</span>
+                            <label class="text-lg font-semibold text-white">Personal Growth &amp; Altruism (Self-Transcendence)</label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                            <span id="transcendenceValue" class="text-lg font-bold text-white bg-white bg-opacity-20 px-4 py-2 rounded-full">0.50</span>
+                            <span class="text-sm text-gray-300">/ 1.00</span>
+                            </div>
+                        </div>
+                        <input
+                            type="range"
+                            name="transcendence"
+                            min="0" max="1" step="0.01" value="0.50"
+                            class="w-full h-3 skill-bar rounded-lg appearance-none cursor-pointer"
+                            id="transcendenceValue"
+                            oninput="updateTraitValue('transcendence', this.value)"
+                        >
+                        </div>
+
+                    <!-- Submit Button -->
+                     <div class="text-center mt-12">
+                        <button type="submit" class="bg-black text-white px-12 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 custom-shadow">
+                            Predict My Career
+                        </button>
+                    </div>
+                </form>
+                {% if prediction %}
+                    <div class="mt-8 p-6 bg-white rounded-xl text-center text-xl font-semibold shadow">
+                        <div class="text-gradient">{{ prediction }}</div>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+    <script>
+        function showPage(pageId) {
+            const homePage = document.getElementById('homePage');
+            const predictPage = document.getElementById('predictPage');
+            
+            if (pageId === 'home') {
+                homePage.classList.remove('hidden');
+                predictPage.classList.add('hidden');
+            } else if (pageId === 'predict') {
+                homePage.classList.add('hidden');
+                predictPage.classList.remove('hidden');
+            }
+            
+            // Update nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('font-bold'));
+            
+            if (pageId === 'home') {
+                navLinks[0].classList.add('font-bold');
+            } else {
+                navLinks[1].classList.add('font-bold');
+            }
+        }
+        
+        function updateSkillValue(skill, value) {
+            document.getElementById(skill + 'Value').textContent = value;
+        }
+
+        function updateTraitValue(skill, value) {
+            document.getElementById(skill + 'Value').textContent = value;
+        }
+    </script>
+</body>
+</html>
