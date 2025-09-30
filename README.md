@@ -1,7 +1,6 @@
 # Career-Scope
 
-**Career-Scope** is a project that helps users explore or predict career paths (or “career scope”) based on certain inputs or models.  
-*(Note: This is inferred from the repository contents — refine as needed.)*
+**Career-Scope** is a project that helps computer science students explore or predict career paths based on their skills and backgrounds.  
 
 ---
 
